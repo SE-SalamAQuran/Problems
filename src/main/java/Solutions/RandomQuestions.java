@@ -1,4 +1,5 @@
 package Solutions;
+import java.math.BigInteger;
 import java.util.*;
 
 
@@ -41,7 +42,7 @@ public static void main(String[] args){
     //We can try using Apache commons lang StringUtils class to save time but what's the point?
     //I didn't do it since I wanted to solve the problem on my own
     /*Counting the occurrence of a given character in a string*/
-    public static int countOccurrence(char target, String str){ //solved in 7 minutes
+    public static int countOccurrence(char target, String str){
         int count = 0;
         for(int i=0; i < str.length(); i++){
             if(str.charAt(i) == target){
@@ -215,6 +216,38 @@ two iterators at the same time on the same linked list.
             System.out.println();
         }
     }
+    /*Calculate very long factorial, won't work with recursion since the normal int data type
+    can't store values longer than
+https://www.hackerrank.com/challenges/extra-long-factorials/problem
+    */
 
-   
+    public static void extraLongFactorials(int n) {
+
+        BigInteger x = BigInteger.valueOf(n);
+        n = n - 1;
+        while(n > 0){
+            x = x.multiply(BigInteger.valueOf(n));
+            n = n-1;
+        }
+        System.out.println(x.toString());
+    }
+    //Palindrome index
+    //https://www.hackerrank.com/challenges/palindrome-index/problem
+    public static int palindromeIndex(String s)
+    {
+        int l = s.length();
+        int i,j,a,b;
+        for (i=0, j=l-1; i<l; i++,j--){
+            if (s.charAt(i)!=s.charAt(j))
+                break;
+        }
+        if (i>j) return -1;
+
+        for (a = i+1, b = j;a < j && b>i+1; a++,b--){
+            if (s.charAt(a)!=s.charAt(b))
+                return j;
+        }
+        return i;
+    }
+
 }
